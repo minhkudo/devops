@@ -23,10 +23,11 @@ jobs:
         run: mvn package
 
       - name: Test with Maven
-        run: mvn test && mvn package
+        run: mvn verify
 
-      - name: Build Jar file
-        run: mkdir staging && cp target/*.jar staging
+      - name: Build with Maven
+        if: ${{success}}
+        run: mvn install
 
       - uses: actions/upload-artifact@v1
         with:
