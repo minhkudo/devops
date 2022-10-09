@@ -1,0 +1,7 @@
+FROM openjdk:8-jdk-alpine
+
+WORKDIR /build
+
+COPY /devops-auth/target/*.jar /build/app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
