@@ -19,4 +19,7 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "account_id")
+    private Long accountId;
 }

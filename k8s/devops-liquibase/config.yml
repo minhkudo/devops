@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: devops-liquibase
+data:
+  DATABASE_URL: "jdbc:mysql://mysql:3306/school_management?useUnicode=yes&characterEncoding=UTF-8"
+  DATABASE_USERNAME: "school_management"

@@ -25,6 +25,7 @@
     <description>devops</description>
     <properties>
         <java.version>1.8</java.version>
+        <map-struct.version>1.5.2.Final</map-struct.version>
     </properties>
 
     <dependencies>
@@ -60,12 +61,12 @@
             <scope>provided</scope>
         </dependency>
 
-
         <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-            <version>4.16.1</version>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${map-struct.version}</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>

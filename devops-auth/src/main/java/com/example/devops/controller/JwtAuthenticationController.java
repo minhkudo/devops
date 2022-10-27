@@ -1,9 +1,13 @@
 package com.example.devops.controller;
 
-import com.example.devops.model.request.JwtRequest;
-import com.example.devops.model.response.JwtResponse;
+import com.example.devops.repository.request.UserLoginRequest;
+import com.example.devops.repository.request.UserRegisterRequest;
+import com.example.devops.repository.response.UserLoginResponse;
+import com.example.devops.repository.response.UserRegisterResponse;
+import com.example.devops.service.UserService;
+import com.example.devops.utils.BaseResponse;
 import com.example.devops.utils.JwtTokenUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,32 +24,31 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/auth")
+@AllArgsConstructor
 public class JwtAuthenticationController {
 
-    @Autowired
     private AuthenticationManager authenticationManager;
-
-    @Autowired
+    private UserService userService;
     private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody UserLoginRequest userLoginRequest) throws Exception {
 
-        Authentication authentication = authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        Authentication authentication = authenticate(userLoginRequest.getUsername(), userLoginRequest.getPassword());
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         final String token = jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal());
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return BaseResponse.success(new UserLoginResponse(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> registerAuthenticationToken(@RequestBody UserRegisterRequest userRegisterRequest) throws Exception {
+        UserRegisterResponse userRegisterResponse = userService.createUser(userRegisterRequest);
 
-
-        return ResponseEntity.ok("alo");
+        return BaseResponse.success(userRegisterResponse);
     }
 
     private Authentication authenticate(String username, String password) throws Exception {

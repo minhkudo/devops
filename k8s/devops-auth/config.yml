@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: devops-auth
 data:
+  CONTEXT_PATH: "devops-auth"
   DATABASE_URL: "jdbc:mysql://localhost:3306/school_management"
   DATABASE_USERNAME: "school_management"
   DATABASE_PASSWORD: "7Y2Cw5mebRpVSH8s"

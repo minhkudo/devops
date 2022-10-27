@@ -28,14 +28,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        // configure AuthenticationManager so that it knows from where to load
-//        // user for matching credentials
-//        // Use BCryptPasswordEncoder
-//        auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
-//    }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
@@ -68,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/login").permitAll() // Cho phép tất cả mọi người truy cập vào 2 địa chỉ này
+                .antMatchers("/auth/*").permitAll() // Cho phép tất cả mọi người truy cập vào 2 địa chỉ này
                 .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().sessionManagement()

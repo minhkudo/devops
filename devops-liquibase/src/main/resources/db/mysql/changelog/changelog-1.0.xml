@@ -7,7 +7,13 @@
 
     <changeSet author="minhkudo" id="202210092340_create_table_account">
         <sqlFile dbms="mysql"
-                 path="classpath:/db/mysql/sources/202210092340_create_table_account.sql"
+                 path="classpath:/db/mysql/sources/202210092340_create_table_accounts.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet author="minhkudo" id="202210271626_create_table_users">
+        <sqlFile dbms="mysql"
+                 path="classpath:/db/mysql/sources/202210271626_create_table_users.sql"
                  relativeToChangelogFile="false"/>
     </changeSet>
 
