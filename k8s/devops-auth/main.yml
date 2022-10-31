@@ -15,10 +15,15 @@ spec:
     spec:
       containers:
         - name: devops-auth
-          image: devops-auth:1.0
+          image: devops-auth:4.0
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: devops-auth
+            - secretRef:
+                name: devops-auth
       restartPolicy: Always
 
 

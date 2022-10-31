@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: devops-liquibase
-          image: devops-liquibase:1.0
+          image: devops-liquibase:2.0
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
