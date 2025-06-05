@@ -11,6 +11,7 @@
         <module>devops-kafka</module>
         <module>devops-api</module>
         <module>devops-liquibase</module>
+        <module>devops-auth-keycloak</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
